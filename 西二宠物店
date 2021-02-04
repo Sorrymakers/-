@@ -1,0 +1,729 @@
+package com.company;
+import java.util.Scanner;
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner input=new Scanner(System.in);
+        System.out.println("当前宠物店没有宠物");
+        System.out.println("请输入当前店内资金(单位元)");
+        double money=input.nextDouble();
+        System.out.println("请输入需要进货的宠物猪数量");
+        int num1=input.nextInt();
+        pig[] pigs=new pig[10];
+        System.out.println("请依次输入猪的年龄体重身高a,b,c三种疫苗注射情况(1表示已注射，0表示未注射)以及颜色和编号(在相应种类的宠物中必须唯一)");
+        for (int i=0;i<num1;i++)
+        {
+            pigs[i]=new pig();
+            pigs[i].setJiYang(false);
+            pigs[i].setAge(input.nextDouble());
+            pigs[i].setHeight(input.nextDouble());
+            pigs[i].setWeight(input.nextDouble());
+            pigs[i].vaccine=new vaccine(input.nextInt(),input.nextInt(),input.nextInt());
+            pigs[i].setColor(input.next());
+            pigs[i].setNum(input.nextInt());
+        }
+        System.out.println("请输入需要进货的宠物狗数量");
+        int num2=input.nextInt();
+        dog[] dogs=new dog[10];
+        System.out.println("请依次输入狗的年龄体重身高a,b,c三种疫苗注射情况(1表示已注射，0表示未注射)以及喜欢的食物和编号(在相应种类的宠物中必须唯一)");
+        for (int i=0;i<num2;i++)
+        {
+            dogs[i]=new dog();
+            dogs[i].setJiYang(false);
+            dogs[i].setAge(input.nextDouble());
+            dogs[i].setHeight(input.nextDouble());
+            dogs[i].setWeight(input.nextDouble());
+            dogs[i].vaccine=new vaccine(input.nextInt(),input.nextInt(),input.nextInt());
+            dogs[i].setFood(input.next());
+            dogs[i].setNum(input.nextInt());
+        }
+        System.out.println("请输入需要进货的宠物猫数量");
+        int num3=input.nextInt();
+        cat[] cats=new cat[10];
+        System.out.println("请依次输入猫的年龄体重身高a,b,c三种疫苗注射情况(1表示已注射，0表示未注射)以及猫的名字和编号(在相应种类的宠物中必须唯一)");
+        for (int i=0;i<num3;i++)
+        {
+            cats[i]=new cat();
+            cats[i].setJiYang(false);
+            cats[i].setAge(input.nextDouble());
+            cats[i].setHeight(input.nextDouble());
+            cats[i].setWeight(input.nextDouble());
+            cats[num3].vaccine=new vaccine(input.nextInt(),input.nextInt(),input.nextInt());
+            cats[i].setName(input.next());
+        }
+        System.out.println("请输入对应的字母编号以实现相应的功能");
+        System.out.println("A 进货    B 寄养   C 打疫苗   D 卖出  E 下班离开宠物店  ");
+        System.out.println("F 显示当前所有宠物的信息  G 显示当前店内资金  H 取回寄养的宠物  I 按套餐批量出售");
+        String p=input.next();
+        char q=p.charAt(0);
+        while (q!='E')
+        {
+             if (q=='A'||q=='B')
+            {
+                System.out.println("请输入需要寄养/进货的宠物种类(cat/pig/dog)");
+                String a=input.next();
+                if (a.equals("cat"))
+                {
+                    System.out.println("请依次输入猫的年龄体重身高a,b,c三种疫苗注射情况(1表示已注射，0表示未注射)以及猫的名字和编号(在相应种类的宠物中必须唯一)");
+                    cats[num3]=new cat();
+                    if (q=='B')
+                        cats[num3].setJiYang(true);
+                    else
+                        cats[num3].setJiYang(false);
+                    cats[num3].setAge(input.nextDouble());
+                    cats[num3].setHeight(input.nextDouble());
+                    cats[num3].setWeight(input.nextDouble());
+                    cats[num3].vaccine=new vaccine(input.nextInt(),input.nextInt(),input.nextInt());
+                    cats[num3].setName(input.next());
+                    num3++;
+                }
+                else if (a.equals("dog"))
+                {
+                    System.out.println("请依次输入狗的年龄体重身高a,b,c三种疫苗注射情况(1表示已注射，0表示未注射)以及喜欢的食物和编号(在相应种类的宠物中必须唯一)");
+                    dogs[num2]=new dog();
+                    if (q=='B')
+                        dogs[num2].setJiYang(true);
+                    else
+                        dogs[num2].setJiYang(false);
+                    dogs[num2].setAge(input.nextDouble());
+                    dogs[num2].setHeight(input.nextDouble());
+                    dogs[num2].setWeight(input.nextDouble());
+                    dogs[num2].vaccine=new vaccine(input.nextInt(),input.nextInt(),input.nextInt());
+                    dogs[num2].setFood(input.next());
+                    num2++;
+                }
+                else if (a.equals("pig"))
+                {
+                    System.out.println("请依次输入猪的年龄体重身高a,b,c三种疫苗注射情况(1表示已注射，0表示未注射)以及颜色和编号(在相应种类的宠物中必须唯一)");
+                    pigs[num1]=new pig();
+                    if (q=='B')
+                        pigs[num1].setJiYang(true);
+                    else
+                        pigs[num1].setJiYang(false);
+                    pigs[num1].setAge(input.nextDouble());
+                    pigs[num1].setHeight(input.nextDouble());
+                    pigs[num1].setWeight(input.nextDouble());
+                    pigs[num1].vaccine=new vaccine(input.nextInt(),input.nextInt(),input.nextInt());
+                    pigs[num1].setColor(input.next());
+                    num1++;
+                }
+                else
+                {
+                    System.out.println("店内没有这种动物");
+                }
+            }
+            else if (q=='C')
+            {
+                System.out.println("请选择需要打疫苗的宠物的种类和编号");
+                String a=input.next();
+                int c=input.nextInt();
+                System.out.println("请选择需要注射的疫苗种类");
+                System.out.println("a       b       c");
+                char p1=input.next().charAt(0);
+                if (a.equals("cat"))
+                {
+                    int i=0;
+                    for (;i<num3;i++)
+                    {
+                        if (c==cats[i].getNum())
+                        {
+                            System.out.println(cats[i].toString());
+                            break;
+                        }
+                    }
+
+                    if (p1=='a')
+                    {
+                        vaccine vaccine=new vaccine(1,cats[i].getVaccine().getB(),cats[i].getVaccine().getC());
+                        cats[i].setVaccine(vaccine);
+                    }
+                    else if (p1=='b')
+                    {
+                        vaccine vaccine=new vaccine(cats[i].getVaccine().getA(),1,cats[i].getVaccine().getC());
+                        cats[i].setVaccine(vaccine);
+                    }
+                    else if (p1=='c')
+                    {
+                        vaccine vaccine=new vaccine(cats[i].getVaccine().getA(),cats[i].getVaccine().getB(),1);
+                        cats[i].setVaccine(vaccine);
+                    }
+                }
+                else if (a.equals("dog"))
+                {
+                    int i=0;
+                    for (;i<num2;i++)
+                    {
+                        if (c==dogs[i].getNum())
+                        {
+                            System.out.println(dogs[i].toString());
+                            break;
+                        }
+                    }
+                    if (p1=='a')
+                    {
+                        vaccine vaccine=new vaccine(1,dogs[i].getVaccine().getB(),dogs[i].getVaccine().getC());
+                        cats[i].setVaccine(vaccine);
+                    }
+                    else if (p1=='b')
+                    {
+                        vaccine vaccine=new vaccine(dogs[i].getVaccine().getA(),1,dogs[i].getVaccine().getC());
+                        dogs[i].setVaccine(vaccine);
+                    }
+                    else if (p1=='c')
+                    {
+                        vaccine vaccine=new vaccine(dogs[i].getVaccine().getA(),dogs[i].getVaccine().getB(),1);
+                        dogs[i].setVaccine(vaccine);
+                    }
+                }
+                else if (a.equals("pig"))
+                {
+                    int i=0;
+                    for (;i<num1;i++)
+                    {
+                        if (c==pigs[i].getNum())
+                        {
+                            System.out.println(pigs[i].toString());
+                            break;
+                        }
+                    }
+                    if (p1=='a')
+                    {
+                        vaccine vaccine=new vaccine(1,pigs[i].getVaccine().getB(),pigs[i].getVaccine().getC());
+                        cats[i].setVaccine(vaccine);
+                    }
+                    else if (p1=='b')
+                    {
+                        vaccine vaccine=new vaccine(pigs[i].getVaccine().getA(),1,pigs[i].getVaccine().getC());
+                        pigs[i].setVaccine(vaccine);
+                    }
+                    else if (p1=='c')
+                    {
+                        vaccine vaccine=new vaccine(pigs[i].getVaccine().getA(),pigs[i].getVaccine().getB(),1);
+                        pigs[i].setVaccine(vaccine);
+                    }
+                }
+            }
+            else if (q=='F')
+            {
+                for (int i=0;i<num1;i++)
+                    System.out.println(pigs[i].toString());
+                for (int i=0;i<num2;i++)
+                    System.out.println(dogs[i].toString());
+                for (int i=0;i<num3;i++)
+                    System.out.println(cats[i].toString());
+            }
+            else if (q=='G')
+            {
+                System.out.println("当前店内共有资金"+money+"元");
+            }
+            else if (q=='H'||q=='D')
+            {
+                System.out.println("请输入您寄养/想要购买的宠物类型(cat/pig/dog)及编号");
+                String a=input.next();
+                int num=input.nextInt();
+                if (a.equals("cat"))
+                {
+                    for (int i=0;i<num3;i++)
+                        if (cats[i].getNum()==num)
+                        {
+                            if (q=='H')
+                            {
+                                if (cats[i].isJiYang()==true)
+                                {
+                                    System.out.println("取走宠物成功");
+                                    cats[i]=cats[num3];
+                                    cats[num3]=null;
+                                    num3--;
+                                }
+                                else
+                                    System.out.println("对应编号的宠物为店铺所有的");
+                            }
+                            else
+                            {
+                                System.out.println("购买宠物成功");
+                                cats[i]=cats[num3];
+                                cats[num3]=null;
+                                num3--;
+                            }
+                        }
+                        else if(i==num2-1)
+                            System.out.println("未找到对应编号的宠物");
+                }
+                else if (a.equals("pig"))
+                {
+                    for (int i=0;i<num1;i++)
+                        if (pigs[i].getNum()==num)
+                        {
+                            if (q=='H')
+                            {
+                                if (pigs[i].isJiYang()==true)
+                                {
+                                    System.out.println("取走宠物成功");
+                                    pigs[i]=pigs[num1];
+                                    pigs[num1]=null;
+                                    num1--;
+                                    break;
+                                }
+                                else
+                                    System.out.println("对应编号的宠物为店铺所有的");
+                            }
+                            else
+                            {
+                                System.out.println("购买宠物成功");
+                                pigs[i]=pigs[num1];
+                                pigs[num1]=null;
+                                num1--;
+                                break;
+                            }
+                        }
+                        else if (i==num1-1)
+                            System.out.println("未找到对应编号的宠物");
+                }
+                else if (a.equals("dog"))
+                {
+                    for (int i=0;i<num2;i++)
+                        if (dogs[i].getNum()==num)
+                        {
+                            if (q=='H')
+                            {
+                                if (dogs[i].isJiYang()==true)
+                                {
+                                    System.out.println("取走宠物成功");
+                                    dogs[i]=dogs[num2];
+                                    dogs[num2]=null;
+                                    num2--;
+                                }
+                                else
+                                    System.out.println("对应编号的宠物为店铺所有的");
+                                break;
+                            }
+                            else
+                            {
+                                System.out.println("购买宠物成功");
+                                dogs[i]=dogs[num2];
+                                dogs[num2]=null;
+                                num2--;
+                                break;
+                            }
+                        }
+                        else if (i==num2-1)
+                            System.out.println("未找到对应编号的宠物");
+                }
+                else if (q=='I')
+                {
+
+                }
+                else
+                {
+                    System.out.println("店内没有这种类型的宠物");
+                    //抛出异常
+                }
+            }
+            else
+             {
+                 System.out.println("输入字母错误");
+             }
+            System.out.println("当前操作已执行完成");
+            System.out.println("请输入对应的字母编号以实现相应的功能");
+            System.out.println("A 进货    B 寄养   C 打疫苗   D 卖出  E 下班离开宠物店  ");
+            System.out.println("F 显示当前所有宠物的信息  G 显示当前店内资金  H 取回寄养的宠物  I 按套餐批量出售");
+            q=input.next().charAt(0);
+        }
+        System.out.println("Bye");
+    }
+}
+package com.company;
+
+public class setMeal {
+    private int pigNum;
+    private int dogNum;
+    private int catNum;
+    private int pigVaccine;
+    private int dogVaccine;
+    private int catVaccine;
+
+    public  setMeal() {
+
+    }
+
+    public setMeal(int pigNum, int dogNum, int catNum, int pigVaccine, int dogVaccine, int catVaccine) {
+        this.pigNum = pigNum;
+        this.dogNum = dogNum;
+        this.catNum = catNum;
+        this.pigVaccine = pigVaccine;
+        this.dogVaccine = dogVaccine;
+        this.catVaccine = catVaccine;
+    }
+
+    public int getPigVaccine() {
+        return pigVaccine;
+    }
+
+    public void setPigVaccine(int pigVaccine) {
+        this.pigVaccine = pigVaccine;
+    }
+
+    public int getDogVaccine() {
+        return dogVaccine;
+    }
+
+    public void setDogVaccine(int dogVaccine) {
+        this.dogVaccine = dogVaccine;
+    }
+
+    public int getCatVaccine() {
+        return catVaccine;
+    }
+
+    public void setCatVaccine(int catVaccine) {
+        this.catVaccine = catVaccine;
+    }
+
+    public int getPigNum() {
+        return pigNum;
+    }
+
+    public void setPigNum(int pigNum) {
+        this.pigNum = pigNum;
+    }
+
+    public int getDogNum() {
+        return dogNum;
+    }
+
+    public void setDogNum(int dogNum) {
+        this.dogNum = dogNum;
+    }
+
+    public int getCatNum() {
+        return catNum;
+    }
+
+    public void setCatNum(int catNum) {
+        this.catNum = catNum;
+    }
+}
+package com.company;
+import java.io.IOException;
+import java.util.logging.Logger;
+public class animal {
+    protected double age;
+    protected double weight;
+    protected double height;
+    protected int num;
+    protected boolean jiYang;
+    protected vaccine vaccine=new vaccine();
+    protected  Logger logger=Logger.getLogger(animal.class.getName());
+
+
+    public animal(double age, double weight, double height, vaccine vaccine, boolean jiYang, int num) {
+        this.age = age;
+        this.height = height;
+        this.weight = weight;
+        this.vaccine.a=vaccine.a;
+        this.vaccine.b=vaccine.b;
+        this.vaccine.c=vaccine.c;
+        this.jiYang=jiYang;
+        this.num=num;
+    }
+    public double getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public animal() {
+
+    }
+
+    public boolean isJiYang() {
+        return jiYang;
+    }
+
+    public void setJiYang(boolean jiYang) {
+        this.jiYang = jiYang;
+    }
+
+    public com.company.vaccine getVaccine() {
+        return vaccine;
+    }
+
+    public void setVaccine(vaccine vaccine) {
+        this.vaccine = vaccine;
+    }
+
+    public double getAge() {
+        if (age<0||age>30)
+        {
+            //throw new IOException();
+            while (age<0||age>30)
+            {
+                logger.severe("请重新输入年龄(大于0小于30)");
+                setAge(age);
+                age=getAge();
+            }
+        }return age;
+    }
+
+    public  void setAge(double age) {
+        this.age = age;
+    }
+
+    public double getWeight() {
+        if (weight<0||weight>100)
+        {
+            //throw new NumException("体重输入有误");
+            while (weight<0||weight>100)
+            {
+                logger.severe("请重新输入体重(大于0小于100)");
+                setWeight(weight);
+                weight=getWeight();
+            }
+        }
+    return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public double getHeight() {
+        if (height<0||height>80)
+        {
+            while (height<0||height>80)
+            {
+                logger.severe("请重新输入身高(大于0小于100)");
+                setHeight(height);
+                height=getHeight();
+            }
+        }return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+    //解决异常
+}package com.company;
+
+public class vaccine {
+    int a;//用int记录店内动物是否接种相应疫苗
+    int b;
+    int c;
+    public vaccine() {
+
+    }
+    public vaccine(int a, int b, int c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    public int getA() {
+        return a;
+    }
+
+    public void setA(int a) {
+        this.a = a;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b= b;
+    }
+
+    public int getC() {
+        return c;
+    }
+
+    public void setC(int c) {
+        this.c = c;
+    }
+        @Override
+    public String toString() {
+        return "vaccine{" +
+                "a=" + a +
+                ", b=" + b +
+                ", c=" + c +
+                '}';
+    }
+}
+package com.company;
+
+import java.io.IOException;
+import java.util.logging.Logger;
+class checkData {
+    public  void checkData1(animal a) {
+        //Logger logger=Logger.getLogger(checkData.class.getName());
+        if (a.height < 0 || a.height > 80) {
+            while (a.height < 0 || a.height > 80) {
+                //throw new NumException("请重新输入身高(大于0小于100)");
+  /*              setHeight(height);
+                height=getHeight();
+            }
+        }
+        if (weight<0||weight>100)
+        {
+            throw new NumException("体重输入有误");
+            while (weight<0||weight>100)
+            {
+                logger.severe("请重新输入体重(大于0小于100)");
+                setWeight(weight);
+                weight=getWeight();
+            }
+        }
+        if (age<0||age>30)
+        {
+            throw new IOException();
+            while (age<0||age>30)
+            {
+                logger.severe("请重新输入年龄(大于0小于30)");
+                setAge(age);
+                age=getAge();
+            }
+        }*/
+            }
+        }
+    }
+}
+package com.company;
+
+public class NumException extends Exception{
+    public NumException(String msg){
+        super(msg);
+    }
+
+}
+package com.company;
+
+public class pig extends animal {
+    private String color;
+    private static int id=0;
+    private int num;
+
+    public pig() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "pig{" +
+                "age=" + age +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", jiYang=" + jiYang +
+                ", vaccine=" + vaccine +
+                ", color='" + color + '\'' +
+                ", num=" + num +
+                '}';
+    }
+
+    public pig(double age, double height, double weight, vaccine vaccine, String color, boolean jiYang,int num)
+        {
+            super(age,height,weight,vaccine,jiYang,num);
+            this.num=++id;
+            this.color=color;
+        }
+
+    public String getColor() {
+        return color;
+    }
+
+    public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        pig.id = id;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+}
+package com.company;
+
+public class dog extends animal{
+    private String food;//喜欢吃的食物。
+    private int num;
+    public dog() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "dog{" +
+                "age=" + age +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", jiYang=" + jiYang +
+                ", vaccine=" + vaccine +
+                ", food='" + food + '\'' +
+                ", num=" + num +
+                '}';
+    }
+
+    public dog(double age, double height, double weight, vaccine vaccine, String food, boolean jiYang,int num)
+    {
+        super(age,height,weight,vaccine,jiYang,num);
+        this.food=food;
+    }
+    public String getFood() {
+        return food;
+    }
+
+    public void setFood(String food) {
+        this.food = food;
+    }
+}
+package com.company;
+
+public class cat extends animal{
+    private String name;
+    private static int id=0;
+    private int num;
+
+    @Override
+    public String toString() {
+        return "cat{" +
+                "age=" + age +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", jiYang=" + jiYang +
+                ", vaccine=" + vaccine +
+                ", name='" + name + '\'' +
+                ", num=" + num +
+                '}';
+    }
+
+    public cat() {
+
+    }
+    public cat(double age,double height,double weight,vaccine vaccine,String name,boolean jiYang,int num)
+    {
+        super(age,height,weight,vaccine,jiYang,num);
+        this.name=name;
+        this.num=++id;
+    }
+
+    public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        cat.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
